@@ -1,0 +1,13 @@
+diff --git a/pmca/usb/sony.py b/pmca/usb/sony.py
+index 9e59737..5bc10bf 100644
+--- a/pmca/usb/sony.py
++++ b/pmca/usb/sony.py
+@@ -912,7 +912,7 @@ class SonySenserAuthDevice(SonyUsbDevice):
+  def _sendAuthPacket(self, cmd, data=b''):
+   self.driver.write(self.AuthPacket.pack(cmd=~cmd & 0xffff, salt=0, data=data))
+   response = self.AuthPacket.unpack(self.driver.read(self.AuthPacket.size))
+-  ret = (~response.cmd & 0xffff) - response.salt
++  ret = ((~response.cmd & 0xffff) - response.salt) & 0xffff
+   return ret, response.data
+ 
+  def authenticate(self):

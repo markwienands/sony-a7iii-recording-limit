@@ -1,0 +1,9 @@
+# Settings copies and logs contain your camera's serial number. Never commit them.
+backups/
+logs/
+*.bin
+Sony-PMCA-RE/
+venv/
+__pycache__/
+*.pyc
+.DS_Store
